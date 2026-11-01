@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>两颗星的距离</title>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script>
+window.GAME_DATA={"questions":[{"cat":"初遇回忆","q":"第一次见面时，你心里在想什么？"},{"cat":"初遇回忆","q":"还记得我们第一次聊天的话题吗？"},{"cat":"初遇回忆","q":"初遇时最让你心动的小细节？"},{"cat":"初遇回忆","q":"如果重逢第一天，你会先说什么？"},{"cat":"初遇回忆","q":"第一次约会最难忘的瞬间？"},{"cat":"初遇回忆","q":"初遇时你有假装冷静吗？"},{"cat":"初遇回忆","q":"第一次送礼物时的心情？"},{"cat":"初遇回忆","q":"初遇后多久开始想再见？"},{"cat":"初遇回忆","q":"我们第一次共同的小秘密？"},{"cat":"初遇回忆","q":"初遇地点最想再去一次吗？"},{"cat":"初遇回忆","q":"第一次牵手上街时的感受？"},{"cat":"初遇回忆","q":"初遇时谁先主动？"},{"cat":"初遇回忆","q":"第一次互相称呼昵称的时刻？"},{"cat":"初遇回忆","q":"初遇天气和心情配吗？"},{"cat":"初遇回忆","q":"第一次共同照片的故事？"},{"cat":"初遇回忆","q":"如果初遇重来，想改变什么？"},{"cat":"日常小事","q":"今天最想和对方做的一件小事？"},{"cat":"日常小事","q":"早餐和晚安，哪一个更想一起？"},{"cat":"日常小事","q":"谁更擅长制造小惊喜？"},{"cat":"日常小事","q":"日常谁先说想你？"},{"cat":"日常小事","q":"最想共同养成的小习惯？"},{"cat":"日常小事","q":"下班回家第一眼想看什么？"},{"cat":"日常小事","q":"做家务时最想分工哪一项？"},{"cat":"日常小事","q":"周末宅家最想做什么？"},{"cat":"日常小事","q":"争吵后谁先和好？"},{"cat":"日常小事","q":"最想收到的日常小礼物？"},{"cat":"日常小事","q":"谁更爱赖床？"},{"cat":"日常小事","q":"一起做饭最想负责哪道菜？"},{"cat":"日常小事","q":"日常最能安抚对方的一句话？"},{"cat":"日常小事","q":"想共同建立的小仪式？"},{"cat":"日常小事","q":"最想一起散步的路线？"},{"cat":"日常小事","q":"睡前最后一句想说什么？"},{"cat":"深度灵魂","q":"你认为爱情里最重要的是什么？"},{"cat":"深度灵魂","q":"最害怕失去的是什么？"},{"cat":"深度灵魂","q":"你希望我如何理解你的脆弱？"},{"cat":"深度灵魂","q":"什么瞬间让你感到被深爱？"},{"cat":"深度灵魂","q":"你理想中的家是什么样？"},{"cat":"深度灵魂","q":"我们最大的共同点是什么？"},{"cat":"深度灵魂","q":"你愿意为对方改变什么？"},{"cat":"深度灵魂","q":"什么会让感情更稳定？"},{"cat":"深度灵魂","q":"你如何定义信任？"},{"cat":"深度灵魂","q":"最想和对方分享的秘密？"},{"cat":"深度灵魂","q":"你认为陪伴比浪漫更重要吗？"},{"cat":"深度灵魂","q":"什么情况下需要被抱抱？"},{"cat":"深度灵魂","q":"你最想被我看见的一面？"},{"cat":"深度灵魂","q":"我们如何处理不同意见？"},{"cat":"深度灵魂","q":"什么会让你感到安心？"},{"cat":"深度灵魂","q":"你希望未来十年我们怎样？"},{"cat":"未来憧憬","q":"最想一起旅行的城市？"},{"cat":"未来憧憬","q":"未来第一套房子想要什么？"},{"cat":"未来憧憬","q":"想共同养的宠物？"},{"cat":"未来憧憬","q":"未来纪念日怎么庆祝？"},{"cat":"未来憧憬","q":"想一起学会的新技能？"},{"cat":"未来憧憬","q":"十年后最想保留的习惯？"},{"cat":"未来憧憬","q":"未来想共同完成的清单？"},{"cat":"未来憧憬","q":"想在什么年龄完成什么？"},{"cat":"未来憧憬","q":"未来家庭节日如何过？"},{"cat":"未来憧憬","q":"最想一起参加的体验？"},{"cat":"未来憧憬","q":"未来想为对方做的大事？"},{"cat":"未来憧憬","q":"想在哪里安家？"},{"cat":"未来憧憬","q":"未来共同理财目标？"},{"cat":"未来憧憬","q":"想和对方父母如何相处？"},{"cat":"未来憧憬","q":"未来最想共同见证的时刻？"},{"cat":"未来憧憬","q":"如果退休，想一起做什么？"},{"cat":"甜蜜挑战","q":"今晚谁先说晚安算输？"},{"cat":"甜蜜挑战","q":"三分钟内让对方笑出来？"},{"cat":"甜蜜挑战","q":"不用手完成一个小任务？"},{"cat":"甜蜜挑战","q":"谁先眨眼谁输？"},{"cat":"甜蜜挑战","q":"用三个词描述对方？"},{"cat":"甜蜜挑战","q":"三十秒内画出对方肖像？"},{"cat":"甜蜜挑战","q":"谁能在一分钟内讲笑话？"},{"cat":"甜蜜挑战","q":"模仿对方一个习惯？"},{"cat":"甜蜜挑战","q":"谁先找到对方身上的隐藏物品？"},{"cat":"甜蜜挑战","q":"闭眼猜对方拿什么？"},{"cat":"甜蜜挑战","q":"谁先说出对方最喜欢的颜色？"},{"cat":"甜蜜挑战","q":"三十秒内写出共同回忆？"},{"cat":"甜蜜挑战","q":"谁先完成一个小舞蹈？"},{"cat":"甜蜜挑战","q":"用表情包表达此刻心情？"},{"cat":"甜蜜挑战","q":"谁先找到窗外某种颜色？"},{"cat":"甜蜜挑战","q":"一分钟内互送三个赞美？"}],"adventures":[{"id":"rain","title":"雨夜车站","emoji":"🌧️","scene":"rain","start":"n0","nodes":{"n0":{"text":"深夜的站台被雨幕包裹，你们的车票不知所踪，广播里列车即将到站。","pose":"stand","choices":[{"label":"找售票员","next":"n1"},{"label":"先躲雨","next":"n2"}]},"n1":{"text":"售票窗口透出暖光，工作人员遗憾地摇头：末班车已满。","pose":"sad","choices":[{"label":"请求加座","next":"n3"},{"label":"改签明日","next":"n4"}]},"n2":{"text":"你们躲进遮雨棚，肩并肩听着雨声，心情 oddly 轻松。","pose":"sit","choices":[{"label":"互相取暖","next":"n5"},{"label":"讲个笑话","next":"n6"}]},"n3":{"text":"乘务员破例安排邻座，你们坐下时相视一笑。","pose":"wave","choices":[{"label":"看窗外","next":"n7"},{"label":"低声聊天","next":"n8"}]},"n4":{"text":"改签成功，你们转去车站 café，点两杯热饮。","pose":"sit","choices":[{"label":"轻声谈心","next":"n9"},{"label":"安静发呆","next":"n10"}]},"n5":{"text":"你们手心相贴，体温传递，雨声像背景音乐。","pose":"hug","choices":[{"label":"等车到来","next":"n11"},{"label":"转头说心里话","next":"n12"}]},"n6":{"text":"笑话把你们笑到弯腰，雨水也像在鼓掌。","pose":"dance","choices":[{"label":"继续逗乐","next":"e_funny"},{"label":"抱在一起","next":"e_touch"}]},"n7":{"text":"窗外城市灯影被雨拉成光带，你们共同欣赏。","pose":"stand","choices":[{"label":"拍下纪念","next":"e_warm"},{"label":"默默相依","next":"e_touch"}]},"n8":{"text":"低声聊天里，彼此的喜好慢慢拼成一幅画。","pose":"sit","choices":[{"label":"约定下次","next":"e_warm"},{"label":"紧紧相拥","next":"e_touch"}]},"n9":{"text":"café 里你们谈未来，热饮雾气模糊了边界。","pose":"heart","choices":[{"label":"共同计划","next":"e_warm"},{"label":"温柔相视","next":"e_touch"}]},"n10":{"text":"安静发呆时，你们却感到一种难得的安心。","pose":"sit","choices":[{"label":"微笑点头","next":"e_warm"},{"label":"轻轻牵手","next":"e_touch"}]},"n11":{"text":"列车进站，你们并肩上车，雨夜成了记忆。","pose":"run","choices":[{"label":"坐稳休息","next":"e_warm"},{"label":"相视微笑","next":"e_touch"}]},"n12":{"text":"你转头对TA说一句心里话，雨声都安静了。","pose":"heart","choices":[{"label":"紧紧相拥","next":"e_touch"},{"label":"笑出声","next":"e_funny"}]},"e_warm":{"text":"你们相视而笑，雨夜也变得温柔可爱。","pose":"heart","ending":"温暖的雨夜","choices":[]},"e_funny":{"text":"你们笑到胃疼，车站广播都像在伴奏。","pose":"dance","ending":"搞笑的雨夜","choices":[]},"e_touch":{"text":"眼眶微湿，你们在雨中紧紧相拥，像电影结局。","pose":"hug","ending":"感人的雨夜","choices":[]}}},{"id":"space","title":"星际飞船","emoji":"🚀","scene":"space","start":"n0","nodes":{"n0":{"text":"警报声中，你们被弹射进逃生舱，氧气计时器开始闪烁。","pose":"run","choices":[{"label":"检查面板","next":"n1"},{"label":"互相鼓励","next":"n2"}]},"n1":{"text":"面板显示导航失灵，只能手动校准坐标。","pose":"stand","choices":[{"label":"共同校准","next":"n3"},{"label":"先深呼吸","next":"n4"}]},"n2":{"text":"你们握紧彼此的手，心跳同步成节拍。","pose":"hug","choices":[{"label":"分工操作","next":"n5"},{"label":"说句情话","next":"n6"}]},"n3":{"text":"坐标逐渐锁定，但燃料只够一次跳跃。","pose":"stand","choices":[{"label":"冒险跳跃","next":"n7"},{"label":"等待救援","next":"n8"}]},"n4":{"text":"深呼吸后，你们分工明确，开始排查故障。","pose":"sit","choices":[{"label":"重启系统","next":"n9"},{"label":"手动导航","next":"n10"}]},"n5":{"text":"分工协作下，逃生舱恢复部分动力。","pose":"wave","choices":[{"label":"加速前进","next":"n11"},{"label":"稳定巡航","next":"n12"}]},"n6":{"text":"情话让舱内温度升高，你们相视而笑。","pose":"heart","choices":[{"label":"继续操作","next":"n11"},{"label":"转头说心里话","next":"n12"}]},"n7":{"text":"跳跃瞬间，窗外星光如河，你们共同屏息。","pose":"stand","choices":[{"label":"安全着陆","next":"e_warm"},{"label":"笑出释然","next":"e_funny"}]},"n8":{"text":"等待中，你们聊起未来，时间变得温柔。","pose":"sit","choices":[{"label":"相拥取暖","next":"e_touch"},{"label":"互相打趣","next":"e_funny"}]},"n9":{"text":"系统重启成功，舱内灯光恢复。","pose":"wave","choices":[{"label":"共同庆祝","next":"e_warm"},{"label":"互相打趣","next":"e_funny"}]},"n10":{"text":"手动导航需要信任，你们配合默契。","pose":"stand","choices":[{"label":"顺利抵达","next":"e_warm"},{"label":"紧紧相拥","next":"e_touch"}]},"n11":{"text":"加速前进，你们冲出陨石带。","pose":"run","choices":[{"label":"欢呼","next":"e_funny"},{"label":"相视","next":"e_warm"}]},"n12":{"text":"稳定巡航里，你们低声约定未来。","pose":"heart","choices":[{"label":"温暖相依","next":"e_touch"},{"label":"互相打趣","next":"e_funny"}]},"e_warm":{"text":"你们安全抵达空间站，星光见证爱情。","pose":"heart","ending":"温暖的星际夜","choices":[]},"e_funny":{"text":"你们笑到氧气面罩起雾，救援队都无奈。","pose":"dance","ending":"搞笑的星际夜","choices":[]},"e_touch":{"text":"相拥在星光下，你们决定永不分离。","pose":"hug","ending":"感人的星际夜","choices":[]}}},{"id":"forest","title":"魔法森林","emoji":"🌲","scene":"forest","start":"n0","nodes":{"n0":{"text":"魔法森林的树木会说话，你们迷路在光斑间。","pose":"stand","choices":[{"label":"问树精灵","next":"n1"},{"label":"跟随光点","next":"n2"}]},"n1":{"text":"树精灵要求你们回答一个关于彼此的问题。","pose":"sit","choices":[{"label":"认真回答","next":"n3"},{"label":" playful 回答","next":"n4"}]},"n2":{"text":"光点引你们到小溪边，水中有倒影。","pose":"stand","choices":[{"label":"互相看倒影","next":"n5"},{"label":" joked","next":"n6"}]},"n3":{"text":"回答正确，精灵送你们一枚幸运叶。","pose":"wave","choices":[{"label":"继续前进","next":"n7"},{"label":"转头说心里话","next":"n8"}]},"n4":{"text":" playful 回答让精灵笑到掉叶子。","pose":"dance","choices":[{"label":"继续 joked","next":"n9"},{"label":"真诚道歉","next":"n10"}]},"n5":{"text":"倒影里你们的影子手牵手，溪水唱歌。","pose":"heart","choices":[{"label":"唱歌回应","next":"n11"},{"label":"相拥","next":"n12"}]},"n6":{"text":" joked 引来小动物围观，森林热闹起来。","pose":"dance","choices":[{"label":"继续搞笑","next":"e_funny"},{"label":"温柔相视","next":"e_touch"}]},"n7":{"text":"幸运叶指引方向，你们走出迷雾。","pose":"run","choices":[{"label":"安全离开","next":"e_warm"},{"label":"相视而笑","next":"e_touch"}]},"n8":{"text":"心里话说出后，森林光斑变成心形。","pose":"heart","choices":[{"label":"紧紧相拥","next":"e_touch"},{"label":"笑出声","next":"e_funny"}]},"n9":{"text":" joked 让森林回声不断，你们笑作一团。","pose":"dance","choices":[{"label":"继续 joked","next":"e_funny"},{"label":"温柔相视","next":"e_warm"}]},"n10":{"text":"真诚道歉感动精灵，它送你们回家。","pose":"hug","choices":[{"label":"共同道谢","next":"e_warm"},{"label":"相拥","next":"e_touch"}]},"n11":{"text":"唱歌回应溪水，森林 granting wish。","pose":"dance","choices":[{"label":"许愿","next":"e_warm"},{"label":" joked","next":"e_funny"}]},"n12":{"text":"相拥时，小动物们送上花瓣。","pose":"hug","choices":[{"label":"温柔相依","next":"e_touch"},{"label":" joked","next":"e_funny"}]},"e_warm":{"text":"你们安全走出森林，幸运叶化作星光。","pose":"heart","ending":"温暖的森林","choices":[]},"e_funny":{"text":"你们笑到树精灵都捂肚子，森林回声不断。","pose":"dance","ending":"搞笑的森林","choices":[]},"e_touch":{"text":"相拥在花雨中，你们约定永远同行。","pose":"hug","ending":"感人的森林","choices":[]}}},{"id":"sea","title":"海边小镇","emoji":"🌊","scene":"sea","start":"n0","nodes":{"n0":{"text":"你们踩着温热的沙子走进暮色下的渔港小镇，潮水正轻轻拍打着木栈桥。远处灯火一盏盏亮起，空气里混着咸味与炸鱼薯条的香气，心里莫名都变得雀跃起来。","pose":"stand","choices":[{"label":"去吃夜宵","next":"n1"},{"label":"先在栈桥散步","next":"n2"}]},"n1":{"text":"你们挤进唯一还开着的老渔店，老板娘热情地塞给你们两人一份超大的海鲜拼盘。两双筷子在同一个盘子里你来我往，明明只吃了三口却已笑得前仰后合。","pose":"sit","choices":[{"label":"趁机喂对方一口","next":"n3"},{"label":"比拼谁能夹到最大虾","next":"n4"}]},"n2":{"text":"你们并肩走上湿润的木栈桥，脚下正好泛起一排银光浪花。远方的渔船都已熄灯，只剩你们的脚步声和潮声。转头对TA说一句心里话，才发觉说话时两人同时凑得太近。","pose":"stand","choices":[{"label":"顺势靠得更近","next":"n5"},{"label":"假装镇定往前走","next":"n6"}]},"n3":{"text":"你们当着满店打瞌睡的猫的面，你喂我一口我喂你一口，逐渐演变成故意错过、故意凑近。结果最后双双被一颗滚烫的鱿鱼烫得同时龇牙咧嘴，反而笑得更厉害。","pose":"heart","choices":[{"label":"一起躲到门外喘气","next":"n7"},{"label":"干脆再点一份甜品","next":"n8"}]},"n4":{"text":"夹虾大战正式开打！你们使出浑身解数却都被对方用眼神干扰，整盘拼盘在你们手忙脚乱下越变越凌乱。老板娘隔着玻璃窗拍手叫好，还偷偷给你们多装了一只炸章鱼。","pose":"laugh","choices":[{"label":"心服口服地投降","next":"n7"},{"label":"耍赖说平局","next":"n8"}]},"n5":{"text":"肩膀贴着肩膀，手臂也不小心蹭在一起。栈桥尽头正好吹来一阵带着腥咸的海风，吹乱了对方耳边一缕发丝。你们谁都没说话，只是用眼神拼命掩饰着藏不住的上扬嘴角。","pose":"heart","choices":[{"label":"牵起对方的手","next":"n9"},{"label":"一起数浪花打发时间","next":"n10"}]},"n6":{"text":"你们极力装作镇定地朝桥头走去，明明步幅都刻意加快，结果每走两步还是不受控地同步转头去看对方。最后同时撞到同一根栏杆，双双抱住对方才没一起跌进沙堆，场面尴尬到只剩傻笑。","pose":"wave","choices":[{"label":"干脆坐栏杆边休息","next":"n9"},{"label":"找个没人的沙滩去","next":"n10"}]},"n7":{"text":"你们缩在店外避风的屋檐下，抱着同一杯滚烫的姜茶取暖。潮水退去后，沙滩上只剩细小的贝壳和你们交叠的影子。谁都舍不得说回家，心里都默默希望这一刻能再长一点。","pose":"hug","choices":[{"label":"一起在沙滩坐到深夜","next":"n11"},{"label":"冒着风去找潮间带","next":"n12"}]},"n8":{"text":"你们坐在沙滩边啃着冰淇淋，迎着微凉海风把剩下的香草冰淇淋一口分食。突然一只贪吃的流浪猫出现，左右摇摆地同时在两人腿间转圈，摆明了只想平分你们的所有甜品。","pose":"sit","choices":[{"label":"假装不理猫偷偷分享","next":"n11"},{"label":"跟猫展开无声争夺","next":"n12"}]},"n9":{"text":"你们并排坐在礁石上，十指紧扣任潮水一次次扑上来又退下。夜空中浮起稀薄的雾气，将远处渔火晕成一团温暖的光。此刻全世界都只剩下彼此心跳，连浪声都变得小心翼翼。","pose":"heart","choices":[{"label":"许个只属于今夜的心愿","next":"n13"},{"label":"干脆什么都不说只靠着","next":"n14"}]},"n10":{"text":"你们光着脚在退潮后的沙滩上追逐，溅起一串水花又立马被浪重新抹平。你们跌跌撞撞地倒在松软沙地，手撑在对方肩上气喘吁吁，笑到连坐起来都要花很大力气。","pose":"run","choices":[{"label":"就这样躺着看星空","next":"n13"},{"label":"用贝壳给对方刻个名字","next":"n14"}]},"n11":{"text":"你们裹着同一条薄毯躺在沙滩上，仰头数着零星星子。第一颗流星划过天际时，你们同时闭眼许愿，睁眼却都先问对方许了什么，结果两人异口同声说：许的是同一个愿望。","pose":"heart","ending":"温暖","choices":[]},"n12":{"text":"你们跟那只油光水滑的猫展开史诗级拉锯战，明明是三个人抢一小块冰淇淋却都输给了它。最后气鼓鼓地坐在一起分着最后一勺，猫心满意足地趴在中间，像是在主持你们的团圆晚宴。","pose":"wave","ending":"搞笑","choices":[]},"n13":{"text":"潮水渐渐涨起，轻轻卷过你们并排的脚踝，像是不舍地想带走这一晚。你们知道明天还会各自有忙碌的日子，却都明白：无论多远，这片会潮起潮落的海边，永远会留着你们今夜的心动。","pose":"hug","ending":"感人","choices":[]},"n14":{"text":"你们坐在礁石上写下一行小小的名字，用潮水刚退的湿沙堆出一个歪歪扭扭的爱心。下一波浪立马温柔地将它抹去。你们相视一笑，心想：比起刻在石头上，藏在心里反而更不会褪色。","pose":"heart","ending":"温暖","choices":[]}}},{"id":"wuxia","title":"古代江湖","emoji":"⚔️","scene":"wuxia","start":"n0","nodes":{"n0":{"text":"你们乔装成江湖行商，随夜色潜入偏僻驿站避雨。窗外雷声轰鸣，马厩里一匹老马打着瞌睡，梁上却隐约传来细微脚步。两人心照不宣地交换眼神：今晚多半有热闹要看。","pose":"stand","choices":[{"label":"躲起来暗中观察","next":"n1"},{"label":"主动查探来历","next":"n2"}]},"n1":{"text":"你们屏息藏在柴房，透过板缝瞧见十余名黑衣人正低声分配暗器，似乎是要对今夜投宿的某位客栈贵客下手。两人同时攥紧袖中仅备的匕首，却又同时觉得：这回绝不能置身事外。","pose":"stand","choices":[{"label":"设法先发制人","next":"n3"},{"label":"转移目标保护客人","next":"n4"}]},"n2":{"text":"你们装作酒足饭饱的路人坐到偏桌，故意大声聊着冗长家常好掩饰耳力。邻桌几人神色一凛，改用手语交流，结果全被你们从对话间隙听了个七八分，连计划的时辰都摸了个清楚。","pose":"sit","choices":[{"label":"速去通知店小二","next":"n3"},{"label":"直接跟踪黑衣人","next":"n4"}]},"n3":{"text":"暴雨助你们一臂之力，黑衣人正要潜入后院时，瓦檐滴水盖过了脚步。你们从两侧包抄，刀光在火把下交错一闪，顷刻间便将首批人拦了下来。可远处更多黑影正循着喊声赶来。","pose":"fight","choices":[{"label":"护住客栈大门","next":"n5"},{"label":"引开敌人到空地","next":"n6"}]},"n4":{"text":"你们悄悄尾随黑衣人穿过后巷，淋着冷雨在积水中绕来绕去。对方戒心极重，频频回头，你们便装作打情骂俏的赶路夫妇，挽着手慢慢晃悠，连最老练的江湖人都差点被你们这幅腔调骗过。","pose":"wave","choices":[{"label":"趁其扎营时动手","next":"n5"},{"label":"先砸了他们备用的绳索","next":"n6"}]},"n5":{"text":"你们背靠背守在漆黑的客栈门洞，四周尽是湿漉漉的刀光与脚步。雨水顺着发梢滴落，手心全是冷汗却谁都不肯后退半步。只要对方跨过门槛一步，你们就要联手把这一关死守到底。","pose":"fight","choices":[{"label":"用计引他们自相残杀","next":"n7"},{"label":"硬拼到底拖到天亮","next":"n8"}]},"n6":{"text":"你们故意大呼引敌人远离客栈，将他们引到一处废弃石拱桥下。这里视野开阔便于周旋，桥下积水倒映着点点火光。敌人一拥而上，偏偏栽在你们早已踩熟地形的连手配合里。","pose":"run","choices":[{"label":"借地势将他们逐个分开","next":"n7"},{"label":"以退为进诱敌中伏","next":"n8"}]},"n7":{"text":"一声铜铃误导让黑衣人阵脚大乱，你们抓住空隙穿插其中，招式配合得前所未有地默契。转头对TA说一句心里话时，对方正好翻身护住你的背影，连喊话都来不及只用一个眼神便心领神会。","pose":"fight","choices":[{"label":"乘胜追击逼问主谋","next":"n9"},{"label":"见好就收保护众人","next":"n10"}]},"n8":{"text":"你们在雨中打得气息紊乱，却越打越有默契，几乎不用言语便能补足对方破绽。黑衣人见久攻不下，渐生退意。就在这时，远山传来一声悠长号角，来敌终于收队仓皇撤退。","pose":"fight","choices":[{"label":"暗中查看他们遗留之物","next":"n9"},{"label":"先安顿受惊的客人","next":"n10"}]},"n9":{"text":"你们在敌人遗落的包袱中翻出一张半张血书，落款赫然是十年前早已销声的某个旧门派。暴雨冲刷着石板路，证据虽少却足够牵出一张早已布好的大网。江湖从来没有真正太平，新的麻烦恐怕已悄悄盯上你们。","pose":"stand","choices":[{"label":"先找个避世之地歇脚","next":"n11"},{"label":"循着线索暗中查访","next":"n12"}]},"n10":{"text":"客栈众人还未从惊魂中回过神，便热情地要留你们吃最丰盛的宵夜压惊。老板娘端上热腾腾的羊汤，你们却在汤碗里发现一枚包好的小纸团，里面写着一行字：别回房，后院有埋伏。","pose":"sit","choices":[{"label":"装作无事继续喝汤","next":"n11"},{"label":"立刻翻窗离开","next":"n12"}]},"n11":{"text":"你们在偏僻山寺暂时落脚，香火里混着新雨的凉意。晨钟响起时，两人在檐下对坐饮茶，忽然发现对方肩头新添的伤痕。谁也没提昨夜的凶险，只是默默将披风披到对方肩上，相视一笑。","pose":"hug","ending":"感人","choices":[]},"n12":{"text":"你们循着线索追查到城中钱庄，却在库房里发现一整排被装进罐子的铜钱，每罐都贴着不同门派的名字。两人同时傻眼：原来江湖恩怨竟被这帮人做成了一门生意，而你们的名字如今也被贴在了其中一罐上。","pose":"wave","ending":"搞笑","choices":[]},"n13":{"text":"你们在城中寻得一间静谧小院暂住，夜夜伴着琴声入睡。某天清晨，对方在院中舞剑时突然回眸一笑，你才惊觉：原来相逢之初的惊险早已 past，而今却更难割舍的，是两颗在生死间贴得更近的心。","pose":"heart","ending":"温暖","choices":[]},"n14":{"text":"你们在门派旧址寻到一卷残册，记满了当年的恩怨与 reconciliation。合上册子时，对方忽然握住你的手说：江湖路长，往后无论去往何方，都与君同行。你点头，剑未出鞘，心却已安定。","pose":"heart","ending":"感人","choices":[]}}},{"id":"garden","title":"末日后的花园","emoji":"🌸","scene":"garden","start":"n0","nodes":{"n0":{"text":"你们在荒废的末日都市中穿行，最终找到一片被高墙围住的隐秘花园。藤蔓爬满断壁，残存的玫瑰却在尘埃中 stubbornly 盛开。你们站在门口，仿佛看见了久违的希望。","pose":"stand","choices":[{"label":"先进门探索","next":"n1"},{"label":"先确认是否安全","next":"n2"}]},"n1":{"text":"你们推开锈蚀的铁门，园中竟有一口仍在滴水的古井。藤蔓间露出几座石像，身姿却温柔得不像末日的产物。你们并肩走进去，园内空气里弥漫着一种说不清的甜香，让紧绷的心弦慢慢松动。","pose":"stand","choices":[{"label":"去古井边取水","next":"n3"},{"label":"先欣赏那些石像","next":"n4"}]},"n2":{"text":"你们绕着高墙仔细查看，发现墙角有几道 claw marks，却久远得像是多年前留下的。园内鸟鸣清脆，不像有危险。你们这才卸下防备，相视一笑：也许这个花园，就是命运给两人的礼物。","pose":"wave","choices":[{"label":"安心进门 explore","next":"n3"},{"label":"先在门口野餐","next":"n4"}]},"n3":{"text":"井水 unexpectedly 清澈甘甜，你们用找到的陶罐装满。喝下第一口时，对方忽然伸手抹掉你嘴角的水滴。两人同时愣住，随后都红了耳根。末日里最珍贵的，也许不是水，而是这种再平常不过的温柔。","pose":"heart","choices":[{"label":"继续往园深处走","next":"n5"},{"label":"先在井边休息","next":"n6"}]},"n4":{"text":"你们在石像前停步，发现它们雕刻的都是相拥的人。每座石像底座都刻着不同名字，像是某种古老誓约。你们忍不住模仿它们的姿势拍照，结果对方歪头撞到你额头，痛得两人同时 Adoption 作痛。","pose":"laugh","choices":[{"label":"继续探索花园","next":"n5"},{"label":"坐下来吃点干粮","next":"n6"}]},"n5":{"text":"园深处有一间玻璃暖房，里面竟开着各色花卉，其中一株巨大的向日葵正对着你们微微转头。你们站在玻璃前，阳光从残破的屋顶洒下，把对方的轮廓描成金色。转头对TA说一句心里话，才惊觉早已说得出口。","pose":"heart","choices":[{"label":"采一朵花送对方","next":"n7"},{"label":"在暖房里坐一会儿","next":"n8"}]},"n6":{"text":"你们席地而坐，分享所剩无几的罐头。一只胖胖的橘猫不知从哪里窜出，理直气壮地坐到你们中间，分明是来分一杯羹的。你们一边喂它一边笑，末日的沉重竟被这只胖猫轻而易举地驱散大半。","pose":"sit","choices":[{"label":"跟着猫去它藏身处","next":"n7"},{"label":"继续吃并和猫聊天","next":"n8"}]},"n7":{"text":"你们在暖房角落发现一株会发光的蓝花，花瓣在暗处微微闪烁。对方小心翼翼地将它摘下，别在你耳后。你低头时，它像一颗微型星星，把整座废城的黑暗都暂时点亮，而你只看见对方眼中倒映的自己。","pose":"heart","choices":[{"label":"许愿永远留在这","next":"n9"},{"label":"带蓝花一起离开","next":"n10"}]},"n8":{"text":"你们和橘猫玩到忘我，它竟然在你们腿上打起呼噜。你们忽然意识到：末日里，一只愿意 trust 你们的猫，比任何武器都珍贵。猫却并不领情，翻个身继续睡，仿佛在说：别吵，本喵在打盹。","pose":"laugh","choices":[{"label":"继续陪猫到天黑","next":"n9"},{"label":"开始搜寻更多物资","next":"n10"}]},"n9":{"text":"夜幕降临时，你们在暖房里相依而眠，橘猫 curled 在你们脚边。园外城市废墟里偶尔传来异响，但园内却安全得像另一个世界。你们在睡梦中无意识地靠近，手指交缠，仿佛在说：无论外面如何，我们永远在一起。","pose":"hug","ending":"感人","choices":[]},"n10":{"text":"你们搜寻时发现一间小仓库，里面堆满罐头、种子和干净的水。你们简直像 discovering 宝藏般欢呼跳跃，结果却在最深处的架子上找到一个字条：园主早已离开，留此给后来者，愿你们比我们更幸福。","pose":"wave","ending":"温暖","choices":[]},"n11":{"text":"你们决定把花园作为长期营地，每天共同打理玫瑰与向日葵。某天清晨，对方在园中搭起简易秋千，你们坐上去同时荡起。风中飘着花瓣，你们笑到忘记末日，只记得彼此在身边就足够。","pose":"dance","ending":"搞笑","choices":[]},"n12":{"text":"你们在暖房中发现一株会发光的蓝花， decided 带它离开。离开花园时，你们回头望向那片废墟，却在远处废墟中看见更多微光闪烁。原来花园不是唯一， merely 是第一个。你们牵着手，决定去寻找所有微光。","pose":"heart","ending":"感人","choices":[]},"n13":{"text":"你们在花园中发现一株会发光的蓝花， decided 带它离开。离开花园时，你们回头望向那片废墟，却在远处废墟中看见更多微光闪烁。原来花园不是唯一， merely 是第一个。你们牵着手，决定去寻找所有微光。","pose":"heart","ending":"感人","choices":[]},"n14":{"text":"你们在花园中发现一株会发光的蓝花， decided 带它离开。离开花园时，你们回头望向那片废墟，却在远处废墟中看见更多微光闪烁。原来花园不是唯一， merely 是第一个。你们牵着手，决定去寻找所有微光。","pose":"heart","ending":"感人","choices":[]}}}],"keywordReactions":[{"keys":["拥抱","抱"],"text":"{name} 把 {other} 轻轻抱进怀里。","pose":"hug"},{"keys":["亲","吻"],"text":"{name} 在 {other} 额头印下一吻。","pose":"heart"},{"keys":["逃跑","跑"],"text":"{name} 拉着 {other} 快速离开。","pose":"run"},{"keys":["战斗","打"],"text":"{name} 护在 {other} 前面迎敌。","pose":"fight"},{"keys":["唱歌","歌"],"text":"{name} 为 {other} 唱一首小曲。","pose":"dance"},{"keys":["礼物","送"],"text":"{name} 把小礼物交给 {other}。","pose":"wave"},{"keys":["哭","泪"],"text":"{name} 轻拍 {other} 的背安慰。","pose":"hug"},{"keys":["笑","乐"],"text":"{name} 和 {other} 一起笑出声。","pose":"dance"},{"keys":["跳舞","舞"],"text":"{name} 牵起 {other} 跳舞。","pose":"dance"},{"keys":["牵手","手"],"text":"{name} 牵住 {other} 的手。","pose":"hug"},{"keys":["看星星","星星"],"text":"{name} 和 {other} 一起看星星。","pose":"sit"},{"keys":["吃","美食"],"text":"{name} 给 {other} 喂一口美食。","pose":"heart"},{"keys":["睡","休息"],"text":"{name} 让 {other} 靠肩休息。","pose":"sit"},{"keys":["告白","喜欢"],"text":"{name} 对 {other} 说出喜欢。","pose":"heart"},{"keys":["保护","守"],"text":"{name} 守护 {other} 不离开。","pose":"fight"},{"keys":["等待","等"],"text":"{name} 一直等待 {other}。","pose":"stand"},{"keys":["写信","信"],"text":"{name} 给 {other} 写一封情书。","pose":"sit"},{"keys":["拍照","相"],"text":"{name} 为 {other} 拍下瞬间。","pose":"wave"},{"keys":["回家","回"],"text":"{name} 和 {other} 一起回家。","pose":"run"},{"keys":["许愿","愿"],"text":"{name} 和 {other} 一起许愿。","pose":"heart"}],"randomEvents":[{"text":"突然下起小雨，你们共撑一把伞。","pose":"hug"},{"text":"路边卖花人送你们一朵花。","pose":"wave"},{"text":"你们同时想到同一件事。","pose":"heart"},{"text":"一只小猫跑来蹭你们脚边。","pose":"sit"},{"text":"音乐响起，你们忍不住跳舞。","pose":"dance"},{"text":"天空出现彩虹。","pose":"heart"},{"text":"你们找到一家隐藏小店。","pose":"wave"},{"text":"对方偷偷买了你喜欢的零食。","pose":"heart"},{"text":"你们迷路后发现新风景。","pose":"run"},{"text":"晚风温柔，你们并肩走。","pose":"stand"},{"text":"手机里跳出共同回忆照片。","pose":"sit"},{"text":"你们同时说同一句话。","pose":"dance"},{"text":"一只气球飘到你们手里。","pose":"wave"},{"text":"你们决定去吃宵夜。","pose":"run"},{"text":"月亮特别圆。","pose":"heart"}],"guessQuestions":[{"q":"对方最喜欢吃的食物？","options":["火锅","寿司","蛋糕","面条"]},{"q":"对方更喜欢的约会方式？","options":["宅家电影","户外散步","咖啡店","旅行"]},{"q":"对方压力大时最想？","options":["被抱","独处","吃东西","睡觉"]},{"q":"对方最喜欢的季节？","options":["春","夏","秋","冬"]},{"q":"对方更喜欢的称呼？","options":["宝贝","亲爱的","名字","昵称"]},{"q":"对方更喜欢的颜色？","options":["粉色","蓝色","黑色","白色"]},{"q":"对方更喜欢的天气？","options":["晴天","雨天","雪天","阴天"]},{"q":"对方更喜欢的动物？","options":["猫","狗","兔子","鸟"]},{"q":"对方更喜欢的音乐？","options":["流行","古典","摇滚","民谣"]},{"q":"对方更喜欢的电影类型？","options":["爱情","喜剧","科幻","悬疑"]},{"q":"对方更喜欢的运动？","options":["跑步","游泳","瑜伽","球类"]},{"q":"对方更喜欢的饮品？","options":["奶茶","咖啡","果汁","茶"]},{"q":"对方更喜欢的甜度？","options":["无糖","微糖","半糖","全糖"]},{"q":"对方更喜欢的辣度？","options":["不辣","微辣","中辣","特辣"]},{"q":"对方更喜欢的出行方式？","options":["步行","公交","自驾","骑行"]},{"q":"对方更喜欢的休息日？","options":["睡懒觉","出门玩","学习","做家务"]},{"q":"对方更喜欢的礼物？","options":["实用","浪漫","手作","惊喜"]},{"q":"对方更喜欢的沟通方式？","options":["语音","文字","视频","见面"]},{"q":"对方更喜欢的纪念日？","options":["初遇日","生日","在一起日","节日"]},{"q":"对方更喜欢的花？","options":["玫瑰","向日葵","百合","郁金香"]},{"q":"对方更喜欢的甜点？","options":["蛋糕","冰淇淋","布丁","巧克力"]},{"q":"对方更喜欢的水果？","options":["草莓","芒果","葡萄","西瓜"]},{"q":"对方更喜欢的蔬菜？","options":["西兰花","番茄","土豆","青菜"]},{"q":"对方更喜欢的主食？","options":["米饭","面条","面包","饺子"]},{"q":"对方更喜欢的早餐？","options":["粥","面包","鸡蛋","豆浆"]},{"q":"对方更喜欢的夜宵？","options":["烧烤","泡面","水果","甜品"]},{"q":"对方更喜欢的着装？","options":["休闲","正式","运动","可爱"]},{"q":"对方更喜欢的发型？","options":["长发","短发","卷发","扎发"]},{"q":"对方更喜欢的配饰？","options":["项链","戒指","手链","耳环"]},{"q":"对方更喜欢的包？","options":["双肩包","单肩包"," tote","斜挎"]},{"q":"对方更喜欢的鞋？","options":["运动鞋","帆布鞋","皮鞋","拖鞋"]},{"q":"对方更喜欢的家居风格？","options":["简约","温馨","复古","现代"]},{"q":"对方更喜欢的灯光？","options":["暖光","白光","彩光","夜灯"]},{"q":"对方更喜欢的床品？","options":["柔软","凉爽","厚实","轻薄"]},{"q":"对方更喜欢的被子？","options":["棉被","羽绒","毛毯","空调被"]},{"q":"对方更喜欢的枕头？","options":["高枕","低枕","记忆枕","抱枕"]},{"q":"对方更喜欢的窗帘？","options":["遮光","纱帘","百叶","卷帘"]},{"q":"对方更喜欢的植物？","options":["多肉","绿萝","玫瑰","仙人掌"]},{"q":"对方更喜欢的香氛？","options":["花香","果香","木香","无香"]},{"q":"对方更喜欢的音乐音量？","options":["小声","中等","大声","静音"]},{"q":"对方更喜欢的阅读？","options":["小说","漫画","杂志","诗歌"]},{"q":"对方更喜欢的娱乐？","options":["游戏","电影","音乐","运动"]},{"q":"对方更喜欢的旅行类型？","options":["自然","城市","海岛","古镇"]},{"q":"对方更喜欢的住宿？","options":["酒店","民宿","帐篷","居家"]},{"q":"对方更喜欢的交通？","options":["飞机","火车","汽车","轮船"]},{"q":"对方更喜欢的拍照姿势？","options":["自然","比耶","拥抱","搞怪"]},{"q":"对方更喜欢的纪念方式？","options":["照片","日记","视频","物品"]},{"q":"对方更喜欢的庆祝方式？","options":["浪漫晚餐","旅行","礼物","宅家"]},{"q":"对方更喜欢的道歉方式？","options":["拥抱","礼物","行动","话语"]},{"q":"对方更喜欢的安慰方式？","options":["倾听","抱抱","陪伴","建议"]},{"q":"对方更喜欢的惊喜？","options":["小礼物","旅行","家常菜","手写信"]}],"drawPrompts":["画一个小心心","画你们第一次见面","画对方的睡颜","画你们的家","画一个拥抱","画对方的笑脸","画你们的旅行","画一个蛋糕","画一只小猫","画你们的影子","画一个太阳","画对方的发型","画你们的手","画一个礼物","画你们的晚餐","画一个小房子","画你们的约定","画一个星星","画对方的配饰","画你们的周末","画一个彩虹","画你们的相册","画一个小树","画你们的未来","画一个月亮"],"capsulePrompts":[{"type":"memory","q":"写下你们第一次见面的细节。"},{"type":"memory","q":"写下最想珍藏的一句情话。"},{"type":"memory","q":"写下对方最可爱的一个瞬间。"},{"type":"memory","q":"写下你们第一次争吵后的和好。"},{"type":"memory","q":"写下最难忘的一次旅行。"},{"type":"memory","q":"写下你们第一次牵手的场景。"},{"type":"memory","q":"写下对方为你做的一件小事。"},{"type":"memory","q":"写下你们第一次共同做饭。"},{"type":"memory","q":"写下对方最温柔的眼神。"},{"type":"memory","q":"写下你们第一次看日落。"},{"type":"memory","q":"写下对方的昵称由来。"},{"type":"memory","q":"写下你们的共同歌单。"},{"type":"memory","q":"写下最想重播的一天。"},{"type":"memory","q":"写下你们的纪念日故事。"},{"type":"memory","q":"写下对方的笑点。"},{"type":"memory","q":"写下你们的共同秘密。"},{"type":"wish","q":"写下未来一年最想一起做的事。"},{"type":"wish","q":"写下想给对方的生日惊喜。"},{"type":"wish","q":"写下想共同完成的挑战。"},{"type":"wish","q":"写下想一起去的城市。"},{"type":"wish","q":"写下想为对方学的技能。"},{"type":"wish","q":"写下想共同养的宠物。"},{"type":"wish","q":"写下想共同布置的家。"},{"type":"wish","q":"写下想共同庆祝的节日。"},{"type":"wish","q":"写下想共同参加的体验。"},{"type":"wish","q":"写下想为对方做的大事。"},{"type":"wish","q":"写下想共同见证的时刻。"},{"type":"wish","q":"写下想共同养成的习惯。"},{"type":"wish","q":"写下想共同完成的清单。"},{"type":"wish","q":"写下想共同学会的舞蹈。"},{"type":"wish","q":"写下想共同种植的植物。"},{"type":"wish","q":"写下想共同许下的愿望。"}]};
+</script>
+<style>
+:root{--cream:#fff8f0;--peach:#ffb5c2;--lav:#c8b6ff;--sky:#a8d8ea;--ink:#5f4b66;--inkl:#7a6685;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Noto Sans SC",system-ui,sans-serif;}
+html,body{width:100%;height:100%;background:radial-gradient(circle at top,#fff5fa 0%,#fff8f0 55%,#f6f0ff 100%);color:var(--ink);overflow:hidden;}
+body{position:relative;display:flex;flex-direction:column;align-items:center;}
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0;}
+#app{position:relative;width:min(94vw,560px);height:100dvh;display:flex;flex-direction:column;gap:14px;padding:calc(env(safe-area-inset-top,12px)+12px) 0 calc(env(safe-area-inset-bottom,12px)+12px);z-index:2;overflow:hidden;}
+.screen{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;width:100%;height:100%;padding:calc(env(safe-area-inset-top,12px)+12px) 14px calc(env(safe-area-inset-bottom,12px)+14px);gap:14px;opacity:0;transform:translateY(14px);transition:opacity .36s,transform .36s;pointer-events:none;overflow-y:auto;}
+.screen.active{display:flex;opacity:1;transform:translateY(0);pointer-events:auto;}
+.glass{width:100%;background:rgba(255,255,255,.72);backdrop-filter:blur(18px);border:1px solid rgba(200,182,255,.28);border-radius:26px;padding:20px;box-shadow:0 20px 60px -30px rgba(184,146,255,.9);display:flex;flex-direction:column;gap:14px;}
+.title{text-align:center;font-size:clamp(20px,5vw,26px);font-weight:700;letter-spacing:6px;}
+.sub{text-align:center;font-size:13px;color:var(--inkl);}
+.field{display:flex;flex-direction:column;gap:8px;}
+input.txt{width:100%;border-radius:999px;border:1px solid transparent;padding:12px 18px;background:rgba(255,255,255,.9);font-size:15px;text-align:center;}
+input.txt:focus{outline:none;border-color:rgba(200,182,255,.9);box-shadow:0 0 0 6px rgba(200,182,255,.16);}
+.color-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.color-dot{width:36px;height:36px;border-radius:50%;border:none;box-shadow:0 12px 30px -18px currentColor;transition:transform .16s;}
+.color-dot.active{transform:scale(1.12);outline:3px solid #fff;}
+.row{display:flex;flex-direction:column;gap:10px;}
+.btn{border:none;border-radius:999px;padding:12px 20px;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(90deg,#ffb5c2,#c8b6ff);color:#fff;box-shadow:0 18px 40px -22px rgba(184,146,255,1);transition:transform .14s;}
+.btn:active{transform:scale(.98);}
+.btn.ghost{background:rgba(255,255,255,.8);color:var(--ink);border:1px solid rgba(200,182,255,.4);box-shadow:none;}
+.join-row{display:flex;gap:8px;}
+.join-row input{flex:1;letter-spacing:8px;text-transform:uppercase;}
+.room-panel{display:none;flex-direction:column;align-items:center;gap:8px;text-align:center;}
+.room-panel.active{display:flex;}
+.room-code{font-size:clamp(30px,9vw,44px);letter-spacing:14px;font-weight:700;}
+.toast-wrap{position:fixed;bottom:calc(env(safe-area-inset-bottom,12px)+18px);left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;pointer-events:none;z-index:14;}
+.toast{padding:9px 16px;border-radius:999px;background:rgba(95,75,102,.86);color:#fff;font-size:13px;opacity:0;transform:translateY(10px);transition:opacity .28s,transform .28s;}
+.toast.show{opacity:1;transform:translateY(0);}
+#reconn{position:fixed;top:0;left:50%;transform:translate(-50%,-120%);width:min(92vw,560px);padding:10px 18px;border-radius:0 0 999px 999px;background:linear-gradient(90deg,#ffb5c2,#c8b6ff);color:#fff;font-size:13px;text-align:center;opacity:0;transition:transform .42s,opacity .42s;z-index:12;}
+#reconn.show{transform:translate(-50%,0);opacity:1;}
+#reconn.ok{background:linear-gradient(90deg,#a8d8ea,#c8b6ff);}
+.pair{display:flex;align-items:flex-end;justify-content:center;gap:clamp(14px,10vw,36px);padding:4px 0;}
+.stick-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.stick-name{font-size:13px;color:var(--inkl);}
+.stick-svg{width:clamp(86px,22vw,110px);height:clamp(124px,30vw,148px);overflow:visible;}
+.stick-svg .s{stroke-linecap:round;stroke-linejoin:round;fill:none;stroke-dasharray:320;stroke-dashoffset:320;animation:draw .92s ease forwards;}
+.stick-svg .b{transform-origin:center bottom;animation:breath 2.8s ease-in-out infinite;}
+@keyframes draw{to{stroke-dashoffset:0;}}
+@keyframes breath{0%,100%{transform:scaleY(1);}50%{transform:scaleY(1.012);}}
+.lobby-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.mode-card{border:none;border-radius:20px;padding:14px;text-align:left;background:rgba(255,255,255,.82);border:1px solid rgba(200,182,255,.32);box-shadow:0 18px 40px -28px rgba(184,146,255,1);display:flex;flex-direction:column;gap:4px;}
+.mode-card:active{transform:scale(.98);}
+.mode-card-t{font-weight:600;}
+.mode-card-s{font-size:12px;color:var(--inkl);}
+.mode-head{width:100%;display:flex;align-items:center;justify-content:space-between;}
+.mode-title{font-weight:600;}
+.icon-btn{border:none;border-radius:999px;padding:8px 14px;background:rgba(255,255,255,.8);border:1px solid rgba(200,182,255,.36);color:var(--ink);}
+.mode-body{width:100%;flex:1;min-height:0;display:flex;flex-direction:column;gap:12px;overflow-y:auto;padding:0 4px;}
+.soft{border-radius:20px;background:rgba(255,255,255,.86);border:1px solid rgba(200,182,255,.26);padding:16px;display:flex;flex-direction:column;gap:10px;}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;}
+.pill{border-radius:999px;padding:7px 14px;background:rgba(255,255,255,.9);border:1px solid rgba(200,182,255,.32);font-size:13px;}
+.pill.active{background:linear-gradient(90deg,#ffb5c2,#c8b6ff);color:#fff;border-color:transparent;}
+.qa-q{text-align:center;font-size:16px;}
+textarea.qa{width:100%;min-height:80px;border-radius:16px;border:1px solid rgba(200,182,255,.28);padding:10px 14px;background:rgba(255,255,255,.95);resize:none;font-size:14px;}
+textarea.qa:disabled{opacity:.6;}
+.reveal{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.reveal-card{border-radius:16px;padding:14px;background:rgba(255,255,255,.9);border:1px solid rgba(200,182,255,.26);min-height:110px;display:flex;flex-direction:column;gap:6px;}
+.scene{position:relative;width:100%;height:150px;border-radius:20px;overflow:hidden;border:1px solid rgba(200,182,255,.28);background:radial-gradient(circle at top,rgba(255,255,255,.9),rgba(246,240,255,.9));}
+.scene svg{position:absolute;inset:0;width:100%;height:100%;}
+.log{display:flex;flex-direction:column;gap:8px;max-height:170px;overflow-y:auto;}
+.log-item{align-self:flex-start;max-width:86%;padding:9px 14px;border-radius:16px 16px 16px 5px;background:rgba(255,255,255,.9);border:1px solid rgba(200,182,255,.24);font-size:14px;}
+.log-item.me{align-self:flex-end;border-radius:16px 16px 5px 16px;background:linear-gradient(90deg,rgba(255,181,194,.26),rgba(200,182,255,.26));}
+.choices{display:flex;flex-direction:column;gap:8px;}
+.choice{border-radius:14px;padding:11px 14px;text-align:left;background:rgba(255,255,255,.9);border:1px solid rgba(200,182,255,.28);font-size:14px;}
+.canvas-wrap{position:relative;width:100%;border-radius:22px;overflow:hidden;border:1px solid rgba(200,182,255,.3);}
+#drawCanvas{width:100%;height:300px;display:block;background:radial-gradient(circle at top,#fff,#f9f6ff);touch-action:none;}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.toolbar .c{width:26px;height:26px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(200,182,255,.4);}
+.toolbar .c.active{box-shadow:0 0 0 2px #c8b6ff;}
+.toolbar select,.toolbar button{border-radius:999px;padding:7px 12px;background:rgba(255,255,255,.9);border:1px solid rgba(200,182,255,.32);}
+.card-wall{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.note{border-radius:14px;padding:12px;background:#fff;box-shadow:0 10px 24px -18px rgba(184,146,255,1);transform:rotate(-1deg);font-size:13px;}
+.note:nth-child(even){transform:rotate(1deg);}
+.note .meta{font-size:11px;color:var(--inkl);margin-top:6px;}
+.chat{display:flex;flex-direction:column;gap:8px;max-height:220px;overflow-y:auto;}
+.chat-b{align-self:flex-start;max-width:80%;padding:9px 14px;border-radius:16px 16px 16px 5px;background:rgba(255,255,255,.9);border:1px solid rgba(200,182,255,.24);font-size:14px;}
+.chat-b.me{align-self:flex-end;border-radius:16px 16px 5px 16px;background:linear-gradient(90deg,rgba(255,181,194,.26),rgba(200,182,255,.26));}
+.actions{display:flex;flex-wrap:wrap;gap:8px;}
+.action{border-radius:999px;padding:8px 14px;background:rgba(255,255,255,.86);border:1px solid rgba(200,182,255,.32);font-size:13px;}
+.heart-burst{position:fixed;pointer-events:none;z-index:20;font-size:26px;animation:burst 1.2s ease forwards;}
+@keyframes burst{0%{transform:scale(0) translate(0,0);opacity:1;}100%{transform:scale(1.4) translate(var(--dx),var(--dy));opacity:0;}}
+.flash-overlay{position:fixed;inset:0;pointer-events:none;z-index:21;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;}
+.flash-overlay.show{opacity:1;}
+.flash-overlay .big{font-size:64px;animation:pop .6s ease;}
+@keyframes pop{0%{transform:scale(.4);}100%{transform:scale(1);}}
+
+.mid-heart{font-size:26px;align-self:center;animation:beat 1.2s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.15)}}
+.mc-e{font-size:20px;margin-right:4px}
+.mode-card{transition:transform .2s,box-shadow .2s}.mode-card:hover{transform:translateY(-3px)}.mode-card:active{transform:scale(.96)}
+#modeBody div[style*="display:flex;gap:8px"]>input.txt{flex:1;text-align:left}
+#modeBody div[style*="display:flex;gap:8px"]>.btn{white-space:nowrap;flex-shrink:0}
+.scene svg{width:100%;height:100%;display:block}
+.rain-l{animation:rainf .8s linear infinite}@keyframes rainf{from{transform:translateY(-150px)}to{transform:translateY(0)}}
+.twk{animation:twk 2s ease-in-out infinite}@keyframes twk{50%{opacity:.2}}
+.wave-p{animation:wavep 4s ease-in-out infinite alternate}@keyframes wavep{to{transform:translateX(-40px)}}
+.log-item{animation:fade .4s ease}
+.fpair .stick-svg{width:90px;height:120px}
+.flash-overlay{flex-direction:column!important;align-items:center!important;justify-content:center!important}.flash-overlay .big{font-size:clamp(26px,8vw,40px)!important;white-space:nowrap;text-align:center}.heart-burst{color:#ff8fa3!important}
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+<div id="reconn">对方连接中断，正在尝试重连…</div>
+<div id="toast-wrap" class="toast-wrap"></div>
+<div id="flash" class="flash-overlay"><div class="big"></div></div>
+<div id="app">
+  <section id="s-home" class="screen active">
+    <div class="glass">
+      <div class="title">两颗星的距离</div>
+      <div class="sub">在遥远的两端，我们依然靠近</div>
+      <div class="field"><label class="sub" style="text-align:left;">昵称</label><input id="nameInput" class="txt" placeholder="写下你的名字" maxlength="12"></div>
+      <div class="field"><label class="sub" style="text-align:left;">选择你的颜色</label><div id="colorGrid" class="color-grid"></div></div>
+      <div class="row"><button id="createBtn" class="btn">创建房间</button></div>
+      <div class="join-row"><input id="joinInput" class="txt" placeholder="房间码" maxlength="6"><button id="joinBtn" class="btn">加入</button></div>
+      <div id="roomPanel" class="room-panel">
+        <div class="sub">房间码</div>
+        <div id="roomCode" class="room-code"></div>
+        <button id="copyBtn" class="btn ghost">复制邀请链接</button>
+        <div id="status" class="sub">等待对方加入…</div>
+      </div>
+    </div>
+  </section>
+  <section id="s-lobby" class="screen">
+    <div class="glass">
+      <div class="title" style="font-size:20px;letter-spacing:4px;">大厅</div>
+      <div class="pair" id="lobbyPair"></div>
+      <div class="lobby-grid">
+        <button class="mode-card" data-mode="qa"><div class="mode-card-t"><span class="mc-e">💌</span> 心动问答</div><div class="mode-card-s">互相答问</div></button>
+        <button class="mode-card" data-mode="adventure"><div class="mode-card-t"><span class="mc-e">📖</span> 共写冒险</div><div class="mode-card-s">共同冒险</div></button>
+        <button class="mode-card" data-mode="guess"><div class="mode-card-t"><span class="mc-e">🎯</span> 默契猜猜</div><div class="mode-card-s">默契加分</div></button>
+        <button class="mode-card" data-mode="draw"><div class="mode-card-t"><span class="mc-e">🎨</span> 一起画</div><div class="mode-card-s">实时画板</div></button>
+        <button class="mode-card" data-mode="capsule"><div class="mode-card-t"><span class="mc-e">⏳</span> 时光胶囊</div><div class="mode-card-s">回忆与心愿</div></button>
+        <button class="mode-card" data-mode="whisper"><div class="mode-card-t"><span class="mc-e">🤫</span> 悄悄话</div><div class="mode-card-s">动作与私语</div></button>
+      </div>
+    </div>
+  </section>
+  <section id="s-mode" class="screen">
+    <div class="glass" style="flex:1;min-height:0;">
+      <div class="mode-head">
+        <div class="mode-title" id="modeTitle">模式</div>
+        <div style="display:flex;gap:8px;">
+          <button id="heartBtn" class="icon-btn">❤</button>
+          <button id="backBtn" class="icon-btn">返回大厅</button>
+        </div>
+      </div>
+      <div class="mode-body" id="modeBody"></div>
+    </div>
+  </section>
+</div>
+<script>
+const COLORS=['#ff8fa3','#ffb5c2','#c8b6ff','#a8d8ea','#f9a8d4','#b8e0d2'];
+let me={role:'guest',name:'',color:COLORS[0]};
+let S={players:{host:{name:'',color:COLORS[0]},guest:{name:'',color:COLORS[1]}},mode:null,qa:{},adv:{},guess:{},capsule:{wall:[]},chat:[],strokes:[],draw:{promptIdx:0}};
+let conn=null,peer=null,connected=false;
+let reconnectTimer=null,hostPeerId=null;
+const $=id=>document.getElementById(id);
+const show=id=>{document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));const el=$(id);if(el)el.classList.add('active');};
+const toast=m=>{const w=$('toast-wrap');const t=document.createElement('div');t.className='toast';t.textContent=m;w.appendChild(t);requestAnimationFrame(()=>t.classList.add('show'));setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),300);},2200);};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function stickSVG(pose,color){
+  const c=color||'#ff8fa3';
+  let arms='';let legs='';
+  switch(pose){
+    case 'wave': arms='<line x1="50" y1="46" x2="78" y2="30" stroke="'+c+'" stroke-width="3"/><line x1="50" y1="46" x2="22" y2="58" stroke="'+c+'" stroke-width="3"/>';break;
+    case 'hug': arms='<path d="M46 46 Q30 56 24 70" stroke="'+c+'" stroke-width="3" fill="none"/><path d="M54 46 Q70 56 76 70" stroke="'+c+'" stroke-width="3" fill="none"/>';break;
+    case 'run': arms='<line x1="50" y1="46" x2="74" y2="38" stroke="'+c+'" stroke-width="3"/><line x1="50" y1="46" x2="26" y2="56" stroke="'+c+'" stroke-width="3"/>';legs='<line x1="50" y1="78" x2="72" y2="104" stroke="'+c+'" stroke-width="3"/><line x1="50" y1="78" x2="28" y2="100" stroke="'+c+'" stroke-width="3"/>';break;
+    case 'sit': legs='<line x1="50" y1="78" x2="34" y2="92" stroke="'+c+'" stroke-width="3"/><line x1="50" y1="78" x2="66" y2="92" stroke="'+c+'" stroke-width="3"/>';break;
+    case 'heart': arms='<path d="M46 46 Q32 34 24 46 Q32 60 50 72 Q68 60 76 46 Q68 34 54 46" stroke="'+c+'" stroke-width="3" fill="none"/>';break;
+    case 'fight': arms='<line x1="50" y1="46" x2="78" y2="40" stroke="'+c+'" stroke-width="3"/><line x1="50" y1="46" x2="22" y2="40" stroke="'+c+'" stroke-width="3"/>';break;
+    case 'sad': arms='<line x1="50" y1="46" x2="70" y2="62" stroke="'+c+'" stroke-width="3"/><line x1="50" y1="46" x2="30" y2="62" stroke="'+c+'" stroke-width="3"/>';break;
+    case 'dance': arms='<line x1="50" y1="46" x2="76" y2="28" stroke="'+c+'" stroke-width="3"/><line x1="50" y1="46" x2="24" y2="32" stroke="'+c+'" stroke-width="3"/>';legs='<line x1="50" y1="78" x2="70" y2="108" stroke="'+c+'" stroke-width="3"/><line x1="50" y1="78" x2="30" y2="96" stroke="'+c+'" stroke-width="3"/>';break;
+    default: arms='<line x1="50" y1="46" x2="74" y2="58" stroke="'+c+'" stroke-width="3"/><line x1="50" y1="46" x2="26" y2="58" stroke="'+c+'" stroke-width="3"/>';legs='<line x1="50" y1="78" x2="66" y2="108" stroke="'+c+'" stroke-width="3"/><line x1="50" y1="78" x2="34" y2="108" stroke="'+c+'" stroke-width="3"/>';
+  }
+  if(!legs) legs='<line x1="50" y1="78" x2="66" y2="108" stroke="'+c+'" stroke-width="3"/><line x1="50" y1="78" x2="34" y2="108" stroke="'+c+'" stroke-width="3"/>';
+  return ('<svg class="stick-svg" viewBox="0 0 100 130"><g class="b"><circle cx="50" cy="24" r="12" stroke="'+c+'" stroke-width="3" class="s"/><line x1="50" y1="36" x2="50" y2="78" stroke="'+c+'" stroke-width="3" class="s"/>'+arms+legs+'</g></svg>').replace(/ class="s"/g,'').replace(/<(line|path|circle)/g,'<$1 class="s"');
+}
+function reduce(S,action,role){
+  if(action.type==='setMode'){S.mode=action.mode;if(action.mode==='qa')S.qa={cat:'初遇回忆',idx:0,answers:{host:'',guest:''},revealed:false};if(action.mode==='adventure')S.adv={storyId:null,cur:'n0',log:[],turn:'host',ending:null};if(action.mode==='guess')S.guess={round:0,score:0,streak:0,roleTurn:'host',picked:{},revealed:false};if(action.mode==='capsule')S.capsule=S.capsule||{wall:[]};if(action.mode==='draw')S.draw=S.draw||{promptIdx:0};if(action.mode==='whisper')S.whisper=S.whisper||{last:null};}
+  if(action.type==='backLobby'){S.mode=null;}
+  if(action.type==='qaCat'){S.qa.cat=action.cat;S.qa.idx=0;S.qa.answers={host:'',guest:''};S.qa.revealed=false;}
+  if(action.type==='qaNext'){const qs=window.GAME_DATA.questions.filter(q=>q.cat===S.qa.cat);S.qa.idx=(S.qa.idx+1)%qs.length;S.qa.answers={host:'',guest:''};S.qa.revealed=false;}
+  if(action.type==='qaAnswer'){S.qa.answers[role]=action.text;if(S.qa.answers.host&&S.qa.answers.guest)S.qa.revealed=true;}
+  if(action.type==='qaReact'){S.qa.react={by:role,ts:Date.now()};}
+  if(action.type==='qaReveal'){S.qa.revealed=true;}
+  if(action.type==='advPick'){S.adv.storyId=action.id;S.adv.log=[];S.adv.turn='host';S.adv.ending=null;S.adv.pose=null;const st0=window.GAME_DATA.adventures.find(a=>a.id===action.id);S.adv.cur=st0?st0.start||'n0':'n0';if(st0){const n0=st0.nodes[S.adv.cur];S.adv.log.push({who:'sys',text:n0.text});}}
+  if(action.type==='advChoice'){const st=window.GAME_DATA.adventures.find(a=>a.id===S.adv.storyId);const node=st&&st.nodes[S.adv.cur];if(node&&node.choices){const ch=node.choices.find(c=>c.label===action.label);if(ch){S.adv.log.push({who:role,text:(S.players[role].name||'')+' 选择了：'+ch.label});S.adv.cur=ch.next;const nn=st.nodes[S.adv.cur];if(nn){S.adv.log.push({who:'sys',text:nn.text});S.adv.pose=null;}}}S.adv.turn=role==='host'?'guest':'host';const n2=st&&st.nodes[S.adv.cur];if(n2&&n2.ending)S.adv.ending=n2.ending;}
+  if(action.type==='advFree'){const st=window.GAME_DATA.adventures.find(a=>a.id===S.adv.storyId);const node=st&&st.nodes[S.adv.cur];const name=S.players[role].name||role;const other=S.players[role==='host'?'guest':'host'].name;let text='';let pose='stand';const kr=(window.GAME_DATA.keywordReactions||[]).find(r=>r.keys.some(k=>action.text.includes(k)));if(kr){text=kr.text.replace('{name}',name).replace('{other}',other);pose=kr.pose;}else{const ev=window.GAME_DATA.randomEvents[Math.floor(Math.random()*window.GAME_DATA.randomEvents.length)];text=ev.text;pose=ev.pose;}S.adv.log.push({who:role,text:name+'：'+action.text});S.adv.log.push({who:'sys',text,pose});S.adv.pose=pose;S.adv.turn=role==='host'?'guest':'host';}
+  if(action.type==='advRestart'){return reduce(S,{type:'advPick',id:S.adv.storyId},role);}
+  if(action.type==='guessPick'){if(S.guess.revealed)return S;S.guess.picked[role]=action.val;if(S.guess.picked.host!==undefined&&S.guess.picked.guest!==undefined)return reduce(S,{type:'guessReveal'},role);}
+  if(action.type==='guessReveal'){const h=S.guess.picked.host,g=S.guess.picked.guest;if(h!==undefined&&g!==undefined){if(h===g){S.guess.score=(S.guess.score||0)+1;S.guess.streak=(S.guess.streak||0)+1;}else{S.guess.streak=0;}S.guess.revealed=true;}}
+  if(action.type==='guessNext'){S.guess.round=(S.guess.round||0)+1;S.guess.picked={};S.guess.revealed=false;S.guess.roleTurn=S.guess.roleTurn==='host'?'guest':'host';}
+  if(action.type==='capsuleAdd'){S.capsule.wall.push({author:role,type:action.ctype,prompt:action.prompt||'',text:action.text,ts:Date.now()});}
+  if(action.type==='chat'){S.chat.push({who:role,text:action.text});}
+  if(action.type==='whisperAction'){S.whisper=S.whisper||{};S.whisper.last={action:action.act,by:role,ts:Date.now()};}
+  if(action.type==='drawPrompt'){S.draw.promptIdx=action.idx;}
+  if(action.type==='strokeAdd'){S.strokes.push(action.stroke);}
+  if(action.type==='clearStrokes'){S.strokes=[];S.draw.clears=(S.draw.clears||0)+1;}
+  return S;
+}
+function dispatch(action){
+  if(me.role==='host'){reduce(S,action,me.role);broadcast({type:'sync',S:JSON.parse(JSON.stringify(S))});render();}
+  else{if(conn&&conn.open)conn.send({type:'action',action});}
+}
+function broadcast(msg){if(conn&&conn.open)conn.send(msg);}
+function burstHearts(){
+  for(let i=0;i<12;i++){const h=document.createElement('div');h.className='heart-burst';h.textContent='❤';h.style.left=(window.innerWidth/2-12)+'px';h.style.top=(window.innerHeight/2-12)+'px';h.style.setProperty('--dx',(Math.random()*200-100)+'px');h.style.setProperty('--dy',(Math.random()*200-200)+'px');document.body.appendChild(h);setTimeout(()=>h.remove(),1200);}
+}
+function flashBig(txt){const f=$('flash');f.querySelector('.big').textContent=txt;f.classList.add('show');setTimeout(()=>f.classList.remove('show'),1600);}
+let lastKey='',lastLogLen=0,seenWhisper=0,seenReact=0;
+function render(){
+  const gd=window.GAME_DATA;
+  const keep={};document.querySelectorAll('#modeBody textarea[id],#modeBody input[id]').forEach(el=>{if(el.type!=='color'&&el.type!=='range')keep[el.id]=el.value;});
+  const focusId=document.activeElement&&document.activeElement.id;
+  try{renderInner(gd);}catch(e){console.warn(e);}
+  Object.keys(keep).forEach(id=>{const el=$(id);if(el&&!el.disabled&&!el.value)el.value=keep[id];});
+  if(focusId){const f=$(focusId);if(f&&f!==document.activeElement&&f.tagName!=='BUTTON')f.focus();}
+  const w=S.whisper&&S.whisper.last;if(w&&w.ts>seenWhisper){const fresh=seenWhisper>0||Date.now()-w.ts<5000;seenWhisper=w.ts;if(fresh&&w.by!==me.role)whisperAnim(w.action,w.by);}
+  const r=S.qa&&S.qa.react;if(r&&r.ts>seenReact){seenReact=r.ts;if(r.by!==me.role){burstHearts();toast((S.players[r.by].name||'TA')+' 给了你一个抱抱 🤗');}}
+}
+function renderInner(gd){
+  const lp=$('lobbyPair');if(lp){lp.innerHTML='<div class="stick-wrap">'+stickSVG(connected?'heart':'wave',S.players.host.color)+'<div class="stick-name">'+esc(S.players.host.name)+'</div></div><div class="mid-heart">💞</div><div class="stick-wrap">'+stickSVG(connected?'heart':'wave',S.players.guest.color)+'<div class="stick-name">'+esc(S.players.guest.name)+'</div></div>';}
+  if(S.mode===null){lastKey='';show('s-lobby');return;}
+  const key=S.mode+'|'+(S.mode==='draw'?(S.draw.promptIdx+'|'+(S.draw.clears||0)):'');if(S.mode==='draw'&&key===lastKey&&$('drawCanvas')){show('s-mode');return;}lastKey=key;
+  show('s-mode');
+  const title=$('modeTitle');const body=$('modeBody');
+  if(!body)return;
+  if(S.mode==='qa'){
+    title.textContent='心动问答';
+    const qs=gd.questions.filter(q=>q.cat===S.qa.cat);
+    const q=qs[S.qa.idx%qs.length]||qs[0];
+    body.innerHTML='<div class="soft"><div class="pill-row">'+['初遇回忆','日常小事','深度灵魂','未来憧憬','甜蜜挑战'].map(c=>'<button class="pill '+(c===S.qa.cat?'active':'')+'" data-cat="'+c+'">'+c+'</button>').join('')+'</div><div class="qa-q">'+esc(q.q)+'</div><textarea class="qa" id="qaAns" placeholder="写下你的答案…" '+(S.qa.answers[me.role]?'disabled':'')+'>'+esc(S.qa.answers[me.role]||'')+'</textarea><div style="display:flex;gap:8px;"><button class="btn" id="qaSub">提交答案</button><button class="btn ghost" id="qaNext">下一张</button></div></div>';
+    if(S.qa.revealed){body.innerHTML+='<div class="reveal"><div class="reveal-card"><div class="sub">'+esc(S.players.host.name)+'</div><div>'+esc(S.qa.answers.host)+'</div></div><div class="reveal-card"><div class="sub">'+esc(S.players.guest.name)+'</div><div>'+esc(S.qa.answers.guest)+'</div></div></div><button class="btn ghost" id="qaReact">抱抱/点赞 ❤</button>';}
+    body.querySelectorAll('.pill').forEach(p=>p.onclick=()=>dispatch({type:'qaCat',cat:p.dataset.cat}));
+    const sub=$('qaSub');if(sub){const mine=S.qa.answers[me.role],oth=S.qa.answers[me.role==='host'?'guest':'host'];if(!S.qa.revealed){const st=document.createElement('div');st.className='sub';st.style.marginTop='8px';st.textContent=(mine?'✓ 你已写好':'✎ 你还没写')+'　·　'+(oth?'对方已写好 ✓':'对方正在思考…');sub.parentNode.after(st);}if(mine)sub.disabled=true;sub.onclick=()=>{const v=$('qaAns').value.trim();if(!v){toast('写点什么吧');return;}dispatch({type:'qaAnswer',text:v});};}
+    const nx=$('qaNext');if(nx)nx.onclick=()=>dispatch({type:'qaNext'});
+    const rc=$('qaReact');if(rc)rc.onclick=()=>{dispatch({type:'qaReact'});burstHearts();};
+  }
+  else if(S.mode==='adventure'){
+    title.textContent='共写冒险';
+    const advs=gd.adventures;
+    if(!S.adv.storyId){
+      body.innerHTML='<div class="soft"><div>选择一个故事</div><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;">'+advs.map(a=>'<button class="mode-card" data-id="'+a.id+'"><div style="font-size:24px;">'+a.emoji+'</div><div class="mode-card-t">'+a.title+'</div></button>').join('')+'</div></div>';
+      body.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>dispatch({type:'advPick',id:b.dataset.id}));
+      return;
+    }
+    const st=advs.find(a=>a.id===S.adv.storyId);
+    const node=st.nodes[S.adv.cur];
+    let sceneSvg='';
+    if(st.scene==='rain')sceneSvg='<svg viewBox="0 0 560 150"><rect width="560" height="150" fill="#dbeafe"/><circle cx="480" cy="30" r="14" fill="#fff" opacity=".8"/><g stroke="#93c5fd" stroke-width="2" class="rain-l">'+Array.from({length:36}).map((_,i)=>'<line x1="'+(i%18*32+10)+'" y1="'+(i<18?0:150)+'" x2="'+(i%18*32+4)+'" y2="'+(i<18?20:170)+'"/><line x1="'+(i%18*32+26)+'" y1="'+(i<18?70:220)+'" x2="'+(i%18*32+20)+'" y2="'+(i<18?90:240)+'"/>').join('')+'</g><path d="M60 150 V95 H200 V150" stroke="#64748b" fill="none" stroke-width="2"/><line x1="50" y1="95" x2="210" y2="95" stroke="#64748b" stroke-width="3"/></svg>';
+    else if(st.scene==='space')sceneSvg='<svg viewBox="0 0 560 150"><rect width="560" height="150" fill="#1e1b4b"/>'+Array.from({length:20}).map(()=>'<circle cx="'+(Math.random()*560)+'" cy="'+(Math.random()*150)+'" r="1.5" fill="#fff" class="twk" style="animation-delay:'+(Math.random()*2).toFixed(2)+'s"/>').join('')+'</svg>';
+    else if(st.scene==='forest')sceneSvg='<svg viewBox="0 0 560 150"><rect width="560" height="150" fill="#dcfce7"/>'+Array.from({length:6}).map((_,i)=>'<polygon points="'+(i*90+20)+',150 '+(i*90+45)+',60 '+(i*90+70)+',150" fill="#16a34a"/>').join('')+'</svg>';
+    else if(st.scene==='sea')sceneSvg='<svg viewBox="0 0 560 150"><rect width="560" height="150" fill="#e0f2fe"/><path d="M0 100 Q70 80 140 100 T280 100 T420 100 T560 100 L560 150 L0 150 Z" fill="#38bdf8" class="wave-p"/><circle cx="90" cy="45" r="18" fill="#fde68a"/><path d="M380 70 l20 -30 l20 30 z" fill="none" stroke="#0369a1" stroke-width="2"/></svg>';
+    else if(st.scene==='wuxia')sceneSvg='<svg viewBox="0 0 560 150"><rect width="560" height="150" fill="#fef3c7"/><polygon points="280,20 200,150 360,150" fill="#78716c"/><line x1="280" y1="40" x2="300" y2="120" stroke="#ef4444" stroke-width="3"/></svg>';
+    else sceneSvg='<svg viewBox="0 0 560 150"><rect width="560" height="150" fill="#fce7f3"/>'+Array.from({length:8}).map((_,i)=>'<circle cx="'+(i*70+30)+'" cy="110" r="8" fill="#f9a8d4"/>').join('')+'</svg>';
+    body.innerHTML='<div class="scene">'+sceneSvg+'</div><div class="pair" style="padding:0;">'+stickSVG(S.adv.pose||node.pose||'stand',S.players.host.color)+'<div style="width:8px;"></div>'+stickSVG(S.adv.pose||node.pose||'stand',S.players.guest.color)+'</div><div class="log" id="advLog">'+S.adv.log.map(l=>'<div class="log-item '+(l.who===me.role?'me':'')+'">'+esc(l.text)+'</div>').join('')+'</div><div class="soft"><div class="sub">轮到：'+esc(S.players[S.adv.turn].name)+'</div><div class="choices">'+(node.choices||[]).map(c=>'<button class="choice" data-label="'+esc(c.label)+'">'+esc(c.label)+'</button>').join('')+'</div><div style="display:flex;gap:8px;"><input id="freeAct" class="txt" placeholder="或自由输入行动…" '+(S.adv.turn!==me.role?'disabled':'')+'><button class="btn" id="freeBtn" '+(S.adv.turn!==me.role?'disabled':'')+'>行动</button></div><div style="display:flex;gap:8px;"><button class="btn ghost" id="restartBtn">再来一次</button><button class="btn ghost" id="changeBtn">换故事</button></div></div>';
+    if(S.adv.ending){body.innerHTML+='<div class="soft" style="text-align:center;animation:pop .5s ease"><div class="sub">故事结局</div><div style="font-size:22px;">🎉 '+esc(S.adv.ending)+' 🎉</div><div class="sub">谢谢你和我一起写完这个故事～</div></div>';const cs=body.querySelector('.choices');if(cs)cs.style.display='none';}
+    body.querySelectorAll('.choice').forEach(b=>b.onclick=()=>{if(S.adv.turn!==me.role){toast('还没轮到你');return;}dispatch({type:'advChoice',label:b.dataset.label});});
+    const freeBtn=$('freeBtn');if(freeBtn)freeBtn.onclick=()=>{const v=$('freeAct').value.trim();if(!v){toast('写点行动');return;}dispatch({type:'advFree',text:v});$('freeAct').value='';};
+    const lg=$('advLog');if(lg){lg.scrollTop=lg.scrollHeight;const items=lg.querySelectorAll('.log-item');const L=S.adv.log.length;if(L>lastLogLen&&items.length){const el=items[items.length-1];const full=el.textContent;el.textContent='';let k=0;const tm=setInterval(()=>{if(!el.isConnected){clearInterval(tm);return;}el.textContent=full.slice(0,++k);lg.scrollTop=lg.scrollHeight;if(k>=full.length)clearInterval(tm);},28);}lastLogLen=L;}
+    const rb=$('restartBtn');if(rb)rb.onclick=()=>dispatch({type:'advRestart'});
+    const cb=$('changeBtn');if(cb)cb.onclick=()=>dispatch({type:'advPick',id:null});
+  }
+  else if(S.mode==='guess'){
+    title.textContent='默契猜猜看';
+    const q=gd.guessQuestions[S.guess.round%gd.guessQuestions.length];
+    body.innerHTML='<div class="soft"><div class="qa-q">'+esc(q.q)+'</div><div class="sub">答题人：'+esc(S.players[S.guess.roleTurn].name)+'　分数：'+(S.guess.score||0)+'　连击：'+(S.guess.streak||0)+'</div><div class="sub">'+(S.guess.roleTurn===me.role?'选出你自己的真实答案':'猜猜 TA 会选哪个？')+'　'+(S.guess.revealed?'':(S.guess.picked[me.role==='host'?'guest':'host']!==undefined?'对方已锁定 ✓':'等待对方…'))+'</div><div class="pill-row">'+q.options.map(o=>'<button class="pill '+(S.guess.picked[me.role]===o?'active':'')+'" data-v="'+esc(o)+'">'+esc(o)+'</button>').join('')+'</div><div style="display:flex;gap:8px;"><button class="btn" id="gSub">锁定答案</button><button class="btn ghost" id="gNext">下一轮</button></div></div>';
+    if(S.guess.revealed){body.innerHTML+='<div class="qa-q" style="text-align:center">'+(S.guess.picked.host===S.guess.picked.guest?'💞 心有灵犀！':'😜 差一点点～')+'</div><div class="reveal"><div class="reveal-card"><div class="sub">'+esc(S.players.host.name)+'</div><div>'+esc(S.guess.picked.host)+'</div></div><div class="reveal-card"><div class="sub">'+esc(S.players.guest.name)+'</div><div>'+esc(S.guess.picked.guest)+'</div></div></div>';}
+    body.querySelectorAll('.pill').forEach(p=>p.onclick=()=>dispatch({type:'guessPick',val:p.dataset.v}));
+    const gs=$('gSub');if(gs)gs.style.display='none';
+    const gn=$('gNext');if(gn)gn.onclick=()=>dispatch({type:'guessNext'});
+  }
+  else if(S.mode==='draw'){
+    title.textContent='一起画';
+    body.innerHTML='<div class="soft"><div class="sub">题目：'+esc(gd.drawPrompts[S.draw?S.draw.promptIdx:0])+'</div><div class="toolbar"><input type="color" id="colorPick" value="#ff8fa3"><input type="range" id="sizePick" min="2" max="20" value="4"><button class="icon-btn" id="eraserBtn">橡皮</button><button class="icon-btn" id="clearBtn">清空</button><button class="icon-btn" id="saveBtn">保存</button><button class="icon-btn" id="promptBtn">换题</button></div></div><div class="canvas-wrap"><canvas id="drawCanvas"></canvas></div>';
+    initDraw();
+  }
+  else if(S.mode==='capsule'){
+    title.textContent='时光胶囊';
+    body.innerHTML='<div class="soft"><div class="sub">抽一个提示</div><div style="display:flex;gap:8px;"><button class="btn" id="capMem">回忆类</button><button class="btn" id="capWish">心愿类</button></div><div id="capPrompt" class="qa-q"></div><textarea class="qa" id="capText" placeholder="写下你的…"></textarea><button class="btn" id="capAdd">投入胶囊</button><button class="btn ghost" id="capExport">导出文本</button></div><div class="card-wall" id="capWall">'+(S.capsule.wall||[]).map(n=>'<div class="note">'+(n.prompt?'<div class="meta">'+esc(n.prompt)+'</div>':'')+'<div>'+esc(n.text)+'</div><div class="meta">'+(n.author===me.role?'我':S.players[n.author].name)+' · '+(n.type==='memory'?'回忆':'心愿')+'</div></div>').join('')+'</div>';
+    $('capMem').onclick=()=>{const ps=gd.capsulePrompts.filter(p=>p.type==='memory');const p=ps[Math.floor(Math.random()*ps.length)];$('capPrompt').textContent=p.q;capType='memory';capPromptTxt=p.q;};if(capPromptTxt)$('capPrompt').textContent=capPromptTxt;
+    $('capWish').onclick=()=>{const ps=gd.capsulePrompts.filter(p=>p.type==='wish');const p=ps[Math.floor(Math.random()*ps.length)];$('capPrompt').textContent=p.q;capType='wish';capPromptTxt=p.q;};
+    $('capAdd').onclick=()=>{const t=$('capText').value.trim();if(!t){toast('写点什么');return;}dispatch({type:'capsuleAdd',ctype:capType,prompt:($('capPrompt')||{}).textContent||'',text:t});$('capText').value='';};
+    $('capExport').onclick=()=>{const txt=(S.capsule.wall||[]).map(n=>(n.author===me.role?'我':S.players[n.author].name)+'：'+n.text).join('\n');navigator.clipboard.writeText(txt).then(()=>toast('已复制'));};
+  }
+  else if(S.mode==='whisper'){
+    title.textContent='悄悄话';
+    body.innerHTML='<div class="soft"><div class="chat" id="chatBox">'+S.chat.map(m=>'<div class="chat-b '+(m.who===me.role?'me':'')+'">'+esc(m.text)+'</div>').join('')+'</div><div style="display:flex;gap:8px;"><input id="chatInput" class="txt" placeholder="说点什么…"><button class="btn" id="chatSend">发送</button></div><div class="actions"><button class="action" data-act="hug">抱抱</button><button class="action" data-act="kiss">亲亲</button><button class="action" data-act="pat">摸头</button><button class="action" data-act="heart">比心</button><button class="action" data-act="miss">想你</button></div></div>';
+    const cs=$('chatSend');if(cs)cs.onclick=()=>{const v=$('chatInput').value.trim();if(!v)return;dispatch({type:'chat',text:v});$('chatInput').value='';};
+    const cbx=$('chatBox');if(cbx)cbx.scrollTop=cbx.scrollHeight;const ci=$('chatInput');if(ci)ci.onkeydown=e=>{if(e.key==='Enter'&&cs)cs.click();};
+    body.querySelectorAll('.action').forEach(b=>b.onclick=()=>{dispatch({type:'whisperAction',act:b.dataset.act});whisperAnim(b.dataset.act,me.role);});
+  }
+}
+let capType='memory',capPromptTxt='';
+let drawing=false,ctx=null,last=null,eraser=false;
+function initDraw(){
+  const canvas=$('drawCanvas');if(!canvas)return;
+  const dpr=window.devicePixelRatio||1;
+  const rect=canvas.getBoundingClientRect();
+  canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;
+  ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
+  ctx.lineCap='round';ctx.lineJoin='round';
+  // replay strokes
+  (S.strokes||[]).forEach(s=>drawStroke(s));
+  const colorPick=$('colorPick'),sizePick=$('sizePick');
+  const getPos=e=>{const r=canvas.getBoundingClientRect();const t=e.touches?e.touches[0]:e;return {x:(t.clientX-r.left)/r.width,y:(t.clientY-r.top)/r.height};};
+  const start=e=>{drawing=true;last=getPos(e);};
+  const move=e=>{if(!drawing)return;const p=getPos(e);const c=colorPick.value;const w=+sizePick.value;const stroke={from:last,to:p,color:eraser?'#ffffff':c,width:w,eraser};drawStroke(stroke);dispatchStroke(stroke);last=p;};
+  const end=()=>{drawing=false;last=null;};
+  canvas.addEventListener('mousedown',start);canvas.addEventListener('mousemove',move);canvas.addEventListener('mouseup',end);canvas.addEventListener('mouseleave',end);
+  canvas.addEventListener('touchstart',e=>{e.preventDefault();start(e);},{passive:false});canvas.addEventListener('touchmove',e=>{e.preventDefault();move(e);},{passive:false});canvas.addEventListener('touchend',e=>{e.preventDefault();end();},{passive:false});
+  const eraserBtn=$('eraserBtn');if(eraserBtn)eraserBtn.onclick=()=>{eraser=!eraser;eraserBtn.textContent=eraser?'画笔':'橡皮';};
+  const clearBtn=$('clearBtn');if(clearBtn)clearBtn.onclick=()=>dispatch({type:'clearStrokes'});
+  const saveBtn=$('saveBtn');if(saveBtn)saveBtn.onclick=()=>{const a=document.createElement('a');a.href=canvas.toDataURL();a.download='our-drawing.png';a.click();};
+  const promptBtn=$('promptBtn');if(promptBtn)promptBtn.onclick=()=>{const gd=window.GAME_DATA;const idx=Math.floor(Math.random()*gd.drawPrompts.length);dispatch({type:'drawPrompt',idx});};
+  const cp=$('colorPick');if(cp)cp.oninput=()=>{};
+}
+function drawStroke(s){
+  if(!ctx)return;
+  const canvas=$('drawCanvas');const r=canvas.getBoundingClientRect();
+  ctx.strokeStyle=s.eraser?'#ffffff':s.color;ctx.lineWidth=s.width;
+  ctx.beginPath();ctx.moveTo(s.from.x*r.width,s.from.y*r.height);ctx.lineTo(s.to.x*r.width,s.to.y*r.height);ctx.stroke();
+}
+function dispatchStroke(s){if(me.role==='host'){S.strokes.push(s);broadcast({type:'stroke',stroke:s});}else{if(conn)conn.send({type:'stroke',stroke:s});}}
+function whisperAnim(act,by){
+  const map={hug:'抱抱 🤗',kiss:'亲亲 😘',pat:'摸摸头 🥰',heart:'比心 💖',miss:'想你啦 🌙'};const pose={hug:'hug',kiss:'hug',pat:'wave',heart:'heart',miss:'sit'}[act]||'heart';
+  const who=by?(S.players[by]&&S.players[by].name||'TA'):'';
+  flashBig((who&&by!==me.role?who+'：':'')+(map[act]||'❤'));const f=$('flash');if(f){let p=f.querySelector('.fpair');if(!p){p=document.createElement('div');p.className='fpair';p.style.cssText='display:flex;justify-content:center;gap:0;margin-top:10px';f.appendChild(p);}p.innerHTML=stickSVG(pose,S.players.host.color)+stickSVG(pose,S.players.guest.color);}
+  burstHearts();
+}
+// particles
+const pc=$('particles');const pctx=pc.getContext('2d');
+function resizeP(){pc.width=window.innerWidth;pc.height=window.innerHeight;}
+resizeP();window.addEventListener('resize',resizeP);
+const parts=Array.from({length:40},()=>({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,r:Math.random()*2+1,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,t:Math.random()*Math.PI*2}));
+function loopP(){pctx.clearRect(0,0,pc.width,pc.height);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.t+=.02;if(p.x<0||p.x>pc.width)p.vx*=-1;if(p.y<0||p.y>pc.height)p.vy*=-1;pctx.globalAlpha=.5+.5*Math.sin(p.t);pctx.fillStyle=Math.random()>.5?'#ffb5c2':'#c8b6ff';pctx.beginPath();pctx.arc(p.x,p.y,p.r,0,Math.PI*2);pctx.fill();});requestAnimationFrame(loopP);}
+loopP();
+// peer logic
+const CHARS='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+function genCode(){let c='';for(let i=0;i<6;i++)c+=CHARS[Math.floor(Math.random()*CHARS.length)];return c;}
+function peerId(code){return 'lovegame-v1-'+code;}
+function connectTo(code){
+  const id=peerId(code);
+  if(!peer||peer.destroyed)peer=new Peer();
+  conn=peer.connect(id,{reliable:true});
+  wireConn(conn);
+}
+function wireConn(c){
+  c.on('open',()=>{if(c!==conn){try{conn&&conn.close()}catch(e){};conn=c;}connected=true;showReconn(false);toast('连上啦 💞');if(me.role==='guest'){c.send({type:'hello',name:me.name,color:me.color});}});
+  c.on('data',d=>{
+    if(d.type==='hello'){S.players.guest={name:d.name,color:(d.color===me.color?COLORS[(COLORS.indexOf(me.color)+2)%COLORS.length]:d.color)};if(me.role==='host'){S.players.host={name:me.name,color:me.color};broadcast({type:'sync',S:JSON.parse(JSON.stringify(S))});render();}}
+    if(d.type==='sync'){S=d.S;render();}
+    if(d.type==='action'){if(me.role==='host'){reduce(S,d.action,d.from||'guest');broadcast({type:'sync',S:JSON.parse(JSON.stringify(S))});render();}}
+    if(d.type==='stroke'){drawStroke(d.stroke);if(me.role==='host'){S.strokes.push(d.stroke);}}
+    if(false){const canvas=$('drawCanvas');if(canvas&&ctx)ctx.clearRect(0,0,canvas.width,canvas.height);if(me.role==='host'){S.strokes=[];broadcast({type:'sync',S:JSON.parse(JSON.stringify(S))});}}
+  });
+  c.on('close',()=>{if(c!==conn)return;connected=false;showReconn(true);startReconnect();});
+  c.on('error',e=>{toast('连接错误：'+e.type);});
+}
+function showReconn(show){const r=$('reconn');if(!r)return;if(show){r.classList.remove('ok');r.textContent='对方连接中断，正在尝试重连…';r.classList.add('show');}else{r.classList.add('ok');r.textContent='重新连上啦 💞';setTimeout(()=>r.classList.remove('show'),2000);}}
+function startReconnect(){
+  if(reconnectTimer)clearInterval(reconnectTimer);
+  reconnectTimer=setInterval(()=>{
+    if(connected){clearInterval(reconnectTimer);reconnectTimer=null;return;}
+    if(me.role==='guest'){
+      if(peer&&peer.disconnected)peer.reconnect();else if(!peer||peer.destroyed){peer=new Peer();connectTo(hostPeerId?hostPeerId.replace('lovegame-v1-',''):'' );}else{connectTo(hostPeerId?hostPeerId.replace('lovegame-v1-',''):'');}
+    }
+  },3000);
+}
+// home events
+const colorGrid=$('colorGrid');
+COLORS.forEach((c,i)=>{const d=document.createElement('button');d.className='color-dot';d.style.background=c;d.dataset.color=c;if(i===0)d.classList.add('active');d.onclick=()=>{document.querySelectorAll('.color-dot').forEach(x=>x.classList.remove('active'));d.classList.add('active');me.color=c;};colorGrid.appendChild(d);});
+$('createBtn').onclick=()=>{
+  const name=$('nameInput').value.trim();if(!name){toast('先写个昵称');return;}me.name=name;me.role='host';
+  S.players.host={name, color:me.color};
+  let code=genCode();let tries=0;
+  function tryCreate(){
+    const id=peerId(code);
+    peer=new Peer(id);
+    peer.on('open',()=>{hostPeerId=id;$('roomCode').textContent=code;$('roomPanel').classList.add('active');$('status').textContent='等待对方加入…';});
+    peer.on('connection',c=>{const old=conn;conn=c;wireConn(c);c.on('open',()=>{try{old&&old!==c&&old.close()}catch(e){};connected=true;showReconn(false);toast('对方加入啦 💞');S.players.host={name:me.name,color:me.color};broadcast({type:'sync',S:JSON.parse(JSON.stringify(S))});render();});});
+    peer.on('disconnected',()=>{setTimeout(()=>{try{if(peer&&peer.disconnected&&!peer.destroyed)peer.reconnect()}catch(e){}},1500);});
+    peer.on('error',e=>{
+      if(e.type==='unavailable-id'){tries++;if(tries<5){code=genCode();tryCreate();}else toast('创建失败，请重试');}
+      else if(e.type==='peer-unavailable')toast('房间不存在');
+      else if(e.type==='network'||e.type==='server-error'||e.type==='socket-error')toast('网络不稳定，正在重试…');else toast('连接出错：'+e.type);
+    });
+  }
+  tryCreate();
+};
+$('joinBtn').onclick=()=>{
+  const name=$('nameInput').value.trim();const code=$('joinInput').value.trim().toUpperCase();if(!name){toast('先写个昵称');return;}if(!code){toast('输入房间码');return;}me.name=name;me.role='guest';hostPeerId=peerId(code);
+  peer=new Peer();
+  peer.on('open',()=>{if(!conn||!conn.open)connectTo(code);});peer.on('disconnected',()=>{setTimeout(()=>{try{if(peer&&peer.disconnected&&!peer.destroyed)peer.reconnect()}catch(e){}},1500);});
+  peer.on('error',e=>{if(e.type==='peer-unavailable'){if(!S.players.host.name)toast('房间不存在或房主已离开，请检查房间码');}else if(e.type==='network'||e.type==='server-error'||e.type==='socket-error')toast('网络不稳定，正在重试…');else toast('连接出错：'+e.type);});
+};
+$('copyBtn').onclick=()=>{const code=$('roomCode').textContent;const url=location.origin+location.pathname+'?room='+code;navigator.clipboard.writeText(url).then(()=>toast('链接已复制'));};
+// url auto fill
+const params=new URLSearchParams(location.search);if(params.get('room')){$('joinInput').value=params.get('room');}
+// lobby mode buttons
+document.querySelectorAll('.mode-card[data-mode]').forEach(b=>b.onclick=()=>dispatch({type:'setMode',mode:b.dataset.mode}));
+$('backBtn').onclick=()=>dispatch({type:'backLobby'});
+$('heartBtn').onclick=()=>{dispatch({type:'whisperAction',act:'heart'});whisperAnim('heart',me.role);};
+// expose
+Object.defineProperty(window,'__game',{get:()=>({S,me,connected})});
+</script>
+</body>
+</html>
